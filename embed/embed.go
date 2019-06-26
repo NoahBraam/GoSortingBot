@@ -1,3 +1,5 @@
+// This package allows for simpler creation of MessageEmbeds,
+// similar to how you would do it using JavaScript/Node.js
 package embed
 
 import "github.com/bwmarrin/discordgo"
