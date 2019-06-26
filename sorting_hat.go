@@ -59,5 +59,7 @@ func messageHandler(sess *discordgo.Session, evt *discordgo.MessageCreate) {
 		commands.RavenclawCommand(sess, message)
 	case "!hufflepuff":
 		commands.HufflepuffCommand(sess, message)
+	case "!slytherin":
+		commands.SlytherinCommand(sess, message)
 	}
 }
