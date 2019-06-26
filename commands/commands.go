@@ -61,6 +61,26 @@ func RavenclawCommand(sess *discordgo.Session, msg *discordgo.Message) {
 	}
 }
 
+// HufflepuffCommand displays info important to the Hufflepuff house
+func HufflepuffCommand(sess *discordgo.Session, msg *discordgo.Message) {
+
+	embed := embed.NewEmbed().SetTitle("Hufflepuff House").
+		SetColor(15513913).
+		SetURL("https://www.pottermore.com/collection/all-about-hufflepuff").
+		SetThumbnail("https://www.hp-lexicon.org/wp-content/uploads/2015/08/hufflepuff-shield-200x0-c-default.jpg").
+		AddField("About", "Hufflepuff is one of the four Houses of Hogwarts School of Witchcraft and Wizardry. Its founder was the medieval witch Helga Hufflepuff. Hufflepuff is the most inclusive among the four houses; valuing hard work, dedication, patience, loyalty, and fair play rather than a particular aptitude in its members. The emblematic animal is a badger, and yellow and black are its colours. The Head of Hufflepuff is Pomona Sprout and the Fat Friar is the House's patron ghost.", false).
+		AddField("Founder", "[Helga Hufflepuff](https://harrypotter.fandom.com/wiki/Helga_Hufflepuff)", false).
+		AddField("Traits", "Dedication\nHardworking\nFairness\nPatience\nKindness\nTolerance\nLoyalty", false).
+		AddField("Famous Wizards", "[Cedric Diggory](https://harrypotter.fandom.com/wiki/Cedric_Diggory)\n[Pomona Sprout](https://harrypotter.fandom.com/wiki/Pomona_Sprout)", false).
+		AddField("More Info", "https://harrypotter.fandom.com/wiki/Hufflepuff", false).
+		MessageEmbed
+
+	_, err := sess.ChannelMessageSendEmbed(msg.ChannelID, embed)
+	if err != nil {
+		fmt.Print(err)
+	}
+}
+
 func sendMessage(sess *discordgo.Session, channelid string, message string) error {
 	_, err := sess.ChannelMessageSend(channelid, message)
 	return err
