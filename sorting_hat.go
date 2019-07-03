@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"sorting_bot/commands"
+	"GoSortingBot/commands"
 
 	"github.com/bwmarrin/discordgo"
 )

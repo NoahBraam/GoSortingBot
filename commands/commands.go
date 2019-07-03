@@ -2,7 +2,7 @@ package commands
 
 import (
 	"fmt"
-	"sorting_bot/embed"
+	"GoSortingBot/embed"
 
 	"github.com/bwmarrin/discordgo"
 )
