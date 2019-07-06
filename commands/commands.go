@@ -1,20 +1,25 @@
 package commands
 
 import (
-	"fmt"
 	"GoSortingBot/embed"
+	"fmt"
+	"strings"
 
-	"github.com/bwmarrin/discordgo"
+	dg "github.com/bwmarrin/discordgo"
 )
 
+var commandsList = []string{"!houses", "!gryffindor", "!ravenclaw", "!hufflepuff", "!slytherin"}
+
 // HelpCommand is the command to display help message
-func HelpCommand(sess *discordgo.Session, msg *discordgo.Message) {
+func HelpCommand(sess *dg.Session, msg *dg.Message) {
 	messageStr := mentionUser(msg) + ", hi I'm the Sorting Hat!"
+	sendMessage(sess, msg.ChannelID, messageStr)
+	messageStr = "My commands are: " + strings.Join(commandsList, ", ")
 	sendMessage(sess, msg.ChannelID, messageStr)
 }
 
 // HouseCommand Displays info about the houses
-func HouseCommand(sess *discordgo.Session, msg *discordgo.Message) {
+func HouseCommand(sess *dg.Session, msg *dg.Message) {
 	houseStr := "There are 4 different houses: Gryffindor, Hufflepuff, Ravenclaw and Slytherin"
 	sendMessage(sess, msg.ChannelID, houseStr)
 	houseStr = "To learn more about a particular house, use !slytherin, !ravenclaw, !hufflepuff or !gryffindor"
@@ -22,7 +27,7 @@ func HouseCommand(sess *discordgo.Session, msg *discordgo.Message) {
 }
 
 // GryffindorCommand displays info important to the Gryffindor house
-func GryffindorCommand(sess *discordgo.Session, msg *discordgo.Message) {
+func GryffindorCommand(sess *dg.Session, msg *dg.Message) {
 
 	embed := embed.NewEmbed().SetTitle("Gryffindor House").
 		SetColor(7602177).
@@ -42,7 +47,7 @@ func GryffindorCommand(sess *discordgo.Session, msg *discordgo.Message) {
 }
 
 // RavenclawCommand displays info important to the Ravenclaw house
-func RavenclawCommand(sess *discordgo.Session, msg *discordgo.Message) {
+func RavenclawCommand(sess *dg.Session, msg *dg.Message) {
 
 	embed := embed.NewEmbed().SetTitle("Ravenclaw House").
 		SetColor(924224).
@@ -62,7 +67,7 @@ func RavenclawCommand(sess *discordgo.Session, msg *discordgo.Message) {
 }
 
 // HufflepuffCommand displays info important to the Hufflepuff house
-func HufflepuffCommand(sess *discordgo.Session, msg *discordgo.Message) {
+func HufflepuffCommand(sess *dg.Session, msg *dg.Message) {
 
 	embed := embed.NewEmbed().SetTitle("Hufflepuff House").
 		SetColor(15513913).
@@ -82,7 +87,7 @@ func HufflepuffCommand(sess *discordgo.Session, msg *discordgo.Message) {
 }
 
 // SlytherinCommand displays info important to the Hufflepuff house
-func SlytherinCommand(sess *discordgo.Session, msg *discordgo.Message) {
+func SlytherinCommand(sess *dg.Session, msg *dg.Message) {
 
 	embed := embed.NewEmbed().SetTitle("Slytherin House").
 		SetColor(1722154).
@@ -101,11 +106,11 @@ func SlytherinCommand(sess *discordgo.Session, msg *discordgo.Message) {
 	}
 }
 
-func sendMessage(sess *discordgo.Session, channelid string, message string) error {
+func sendMessage(sess *dg.Session, channelid string, message string) error {
 	_, err := sess.ChannelMessageSend(channelid, message)
 	return err
 }
 
-func mentionUser(msg *discordgo.Message) string {
+func mentionUser(msg *dg.Message) string {
 	return "<@" + msg.Author.ID + ">"
 }
